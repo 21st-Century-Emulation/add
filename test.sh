@@ -3,9 +3,9 @@ docker run --rm --name add -d -p 8080:8080 add
 
 RESULT=`curl -s --header "Content-Type: application/json" \
   --request POST \
-  --data '{"opcode":128,"state":{"a":46,"b":108,"c":0,"d":5,"e":15,"h":10,"l":20,"flags":{"sign":false,"zero":false,"auxCarry":false,"parity":false,"carry":false},"programCounter":1,"stackPointer":2,"cycles":0}}' \
+  --data '{"id":"abcd", "opcode":128,"state":{"a":46,"b":108,"c":0,"d":5,"e":15,"h":10,"l":20,"flags":{"sign":false,"zero":false,"auxCarry":false,"parity":false,"carry":false},"programCounter":1,"stackPointer":2,"cycles":0}}' \
   http://localhost:8080/api/v1/execute`
-EXPECTED='{"opcode":128,"state":{"a":154,"b":108,"c":0,"d":5,"e":15,"h":10,"l":20,"flags":{"sign":true,"zero":false,"auxCarry":true,"parity":true,"carry":false},"programCounter":1,"stackPointer":2,"cycles":4}}'
+EXPECTED='{"id":"abcd", "opcode":128,"state":{"a":154,"b":108,"c":0,"d":5,"e":15,"h":10,"l":20,"flags":{"sign":true,"zero":false,"auxCarry":true,"parity":true,"carry":false},"programCounter":1,"stackPointer":2,"cycles":4}}'
 
 docker kill add
 
